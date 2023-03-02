@@ -17,11 +17,15 @@ service:
 
 
 deployment:
-  replicas: 1
+  replicas: 3
   container:
     name: spring-music
-    image: yanivomc/spring-music:latest
+    image: yanivomc/spring-music
     containerPort: 8080
+    tag: latest
 
 ingress:
   enabled: true
+
+job:
+ sleepyTime: 1
