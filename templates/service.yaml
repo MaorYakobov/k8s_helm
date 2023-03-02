@@ -4,8 +4,13 @@ metadata:
   name: {{ .Values.service.Name }}
 spec:
   selector:
-    app: music
+    app: {{ .Release.Name }}    
+    {{- include "spring.labels" . | nindent 4}}
+  {{ if .Values.ingress.enabled }}
   type: {{ .Values.service.type }}
+  {{ else }}
+  type: ClusterIP
+  {{ end }}
   ports:
   - name: http
     protocol: TCP
